@@ -29,15 +29,6 @@ public class Car extends Vehicle {
             "Vagabond","Vanish","Vertex","Vigor","Vindicator","Viper","Virtue","Vision","Vortex","Voyage",
             "Vulture","Warrior","Whim","Whirlpool","Wish","Zeal"};
 
-    @Override
-    public void moveForAnHour(Race race) {
-        if( race.isThereABrokenTruck()) {
-            distanceTraveled += 75;
-        } else {
-            super.moveForAnHour(race);
-        }
-    }
-
     public Car() { Random generate = new Random();
             name = carNames[generate.nextInt(carNames.length)] + " " + carNames[generate.nextInt(carNames.length)];
             speed = generate.nextInt(30) + 80;

@@ -9,6 +9,8 @@ public class Race {
     private int numberOfBrokenTruckOnRoad = 0;
     private Vehicle[] raceVehicles;
     private Weather weather = new Weather();
+    private int turnsWhenRaining = 0;
+    private int turnsWenTruckDown = 0;
 
     public static void main(String[] args) {
         Race race = new Race();
@@ -49,6 +51,12 @@ public class Race {
     private void simulateRace() {
         for (int round = 1; round <= 50; round++) {
             weather.setRaining();
+            if(weather.isRaining()) {
+                turnsWhenRaining++;
+            }
+            if(isThereABrokenTruck()) {
+                turnsWenTruckDown++;
+            }
             for (Vehicle racer : raceVehicles) {
                 racer.moveForAnHour(this);
             }
@@ -58,6 +66,8 @@ public class Race {
     private void printRaceResults(){
         for(Vehicle racer: raceVehicles)
             racer.print();
+        System.out.println("Turns when raining: " + turnsWhenRaining);
+        System.out.println("Turns when Truck was down " + turnsWenTruckDown);
     }
 
     private void sortVehicles() {

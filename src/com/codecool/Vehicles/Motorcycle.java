@@ -16,7 +16,11 @@ public class Motorcycle extends Vehicle {
     public void moveForAnHour(Race race) {
         if (race.isItRaining()){
             Random slowAmount = new Random();
-            distanceTraveled += speed - (slowAmount.nextInt(46)+5);
+            float slowedSpeed = speed - (slowAmount.nextInt(46)+5);
+            if (race.isThereABrokenTruck())
+                distanceTraveled += Math.min(slowedSpeed,75);
+            else
+                distanceTraveled += slowedSpeed;
         } else {
             super.moveForAnHour(race);
         }
